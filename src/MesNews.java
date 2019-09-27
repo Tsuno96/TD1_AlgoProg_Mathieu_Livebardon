@@ -43,7 +43,7 @@ public class MesNews {
 
 	}
 
-	private static int afficher_menu() {
+	public static int afficher_menu() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Veuillez saisir un nombre : \n 1 - Creer\n 2 - Ouvrir\n 3 - Sauvegarder\n 4 - Inserer\n 5 - Supprimer \n 6 - Afficher\n 7 - Rechercher\n 8 - Quitter");
 		int choix = sc.nextInt();
@@ -51,27 +51,27 @@ public class MesNews {
 		return choix;
 	}
 
-	private static void quitter() {
+	public static void quitter() {
 		System.out.println("Quitte l'application");
 
 	}
 
-	private static void rechercher() {
+	public static void rechercher() {
 		System.out.println("Recherche dans la base");
 
 	}
 
-	private static void afficher() {
+	public static void afficher() {
 		System.out.println("Affichage total de la base");
 
 	}
 
-	private static void supprimer() {
+	public static void supprimer() {
 		System.out.println("Suppression d'une base");
 
 	}
 
-	private static void inserer() {
+	public static void inserer() {
 		System.out.println("Insere une nouvelle actualite dans la base");
 
 	}
