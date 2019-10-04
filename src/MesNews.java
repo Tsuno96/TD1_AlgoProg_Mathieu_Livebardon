@@ -5,15 +5,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MesNews {
-
+	public static BaseDeNews bdn = new BaseDeNews();
 	public static void main(String[] args) throws MalformedURLException {
-		BaseDeNews bdn = new BaseDeNews();
+
 		int i;
 		do {
 			i = afficher_menu();
 			switch (i) {
 			case 1:
-				creer(bdn);
+				creer();
 				break;
 			case 2:
 				ouvrir();
@@ -22,16 +22,16 @@ public class MesNews {
 				sauvegarder();
 				break;
 			case 4:
-				inserer(bdn);
+				inserer();
 				break;
 			case 5:
 				supprimer();
 				break;
 			case 6:
-				afficher(bdn);
+				afficher();
 				break;
 			case 7:
-				rechercher(bdn);
+				rechercher();
 				break;
 			case 8:
 				quitter();
@@ -57,9 +57,9 @@ public class MesNews {
 
 	}
 
-	public static void rechercher(BaseDeNews bdn) throws MalformedURLException {
+	public static void rechercher() throws MalformedURLException {
 		System.out.println("Recherche dans la base");
-		creer(bdn);
+		creer();
 		bdn.ajoute(new News("un",LocalDate.parse("2005-05-05"),"1m80",new URL("http://g.fr")));
 		bdn.ajoute(new News("deux",LocalDate.parse("2005-05-05"),"1m80",new URL("http://g.fr")));
 		bdn.ajoute(new News("trois",LocalDate.parse("2005-05-05"),"1m80",new URL("http://g.fr")));
@@ -67,17 +67,42 @@ public class MesNews {
 
 	}
 
-	public static void afficher(BaseDeNews bdn) {
+	public static void afficher() {
 		System.out.println("Affichage total de la base");
 		bdn.afficher_collection();
 	}
 
-	public static void supprimer() {
+	public static void supprimer() throws MalformedURLException {
 		System.out.println("Suppression d'une base");
+		int i = 0;
+		for (News n : bdn.getTsCollection()
+			 ) {
+			System.out.println(++i);
+			System.out.println(n);
+		}
 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Veulliez saisir le numero de la news à supprimer");
+		int nNewstodelete = sc.nextInt();
+		i = 1;
+
+		News n_toremove = new News();
+		for (News n : bdn.getTsCollection()
+		) {
+
+			if (i == nNewstodelete)
+			{
+				n_toremove = n;
+			}
+			i++;
+		}
+
+		System.out.println(n_toremove);
+		bdn.getTsCollection().remove(n_toremove);
+		System.out.println("news supprimée");
 	}
 
-	public static void inserer(BaseDeNews bdn) throws MalformedURLException {
+	public static void inserer() throws MalformedURLException {
 		System.out.println("Insere une nouvelle actualite dans la base");
 
 		Scanner sc = new Scanner(System.in);
@@ -112,7 +137,7 @@ public class MesNews {
 
 	}
 
-	public static void creer(BaseDeNews bdn) {
+	public static void creer() {
 
 		System.out.println("Vous avez crée une nouvelle base d'actulalité.");
 		bdn.initialise();

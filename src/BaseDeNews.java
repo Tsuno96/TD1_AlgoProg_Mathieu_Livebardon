@@ -3,6 +3,8 @@ import java.util.TreeSet;
 
 public class BaseDeNews {
 
+
+
     TreeSet<News> tsCollection;
 
     public void initialise()
@@ -27,7 +29,11 @@ public class BaseDeNews {
         }
     }
 
-    
+
+    public TreeSet<News> getTsCollection() {
+        return tsCollection;
+    }
+
 
 
 

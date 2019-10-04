@@ -12,6 +12,12 @@ public class News {
 	private String strAuteur;
 	private URL urlSource;
 
+	public News() throws MalformedURLException {
+		this.strTitre = "";
+		this.ldDate = LocalDate.now();
+		this.strAuteur = "";
+		this.urlSource = new URL("http://fake.url");
+	}
 
 	public News(String strTitre, LocalDate ldDate, String strAuteur, URL urlSource) {
 		this.strTitre = strTitre;
