@@ -11,7 +11,8 @@ public class PhotoNews extends News {
    private Vec2d vec2Resolution;
    private boolean bColored;
 
-    public PhotoNews(String strTitre, LocalDate ldDate, String strAuteur, URL urlSource, String strPhoto, String strFormat, Vec2d vec2Resolution, boolean bColored) {
+    public PhotoNews(String strTitre, LocalDate ldDate, String strAuteur, URL urlSource,
+                     String strPhoto, String strFormat, Vec2d vec2Resolution, boolean bColored) {
         super(strTitre, ldDate, strAuteur, urlSource);
         this.strPhoto = strPhoto;
         this.strFormat = strFormat;

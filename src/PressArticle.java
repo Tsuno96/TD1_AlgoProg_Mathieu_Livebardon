@@ -19,7 +19,7 @@ public class PressArticle extends News {
 
     @Override
     public String toString() {
-        return super.toString()+"\nVersion Longue : "+urlVersionLongue+"\nContenu textuel : "+strText+"\nVersion papier : "+bVersionPapier;
+        return super.toString()+"\nContenu textuel : "+strText+"\nVersion Longue : "+urlVersionLongue+"\nVersion papier : "+bVersionPapier;
     }
 
     public String getStrText() {
