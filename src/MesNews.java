@@ -1,5 +1,3 @@
-import com.sun.javafx.geom.Vec2d;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -63,10 +61,14 @@ public class MesNews {
     public static void rechercher() throws MalformedURLException {
         System.out.println("Recherche dans la base");
         creer();
-        bdn.ajoute(new News("un", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")));
-        bdn.ajoute(new News("deux", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")));
-        bdn.ajoute(new News("trois", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")));
-        bdn.ajoute(new News("quatre", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")));
+        bdn.ajoute(new PressArticle("un", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
+				"Le lama est le meilleur des animaux",new URL("http://y.fr"),false));
+        bdn.ajoute(new PressArticle("deux", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
+				"Pourquoi mon roi est un lama ?",new URL("http://lama.fr"),true));
+        bdn.ajoute(new PhotoNews("trois", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
+		,"lama.jpg","JPG",new Vector2(200,500),true));
+        bdn.ajoute(new PhotoNews("quatre", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
+				,"lama.png","PNG",new Vector2(250,5000),false));
 
     }
 
@@ -177,7 +179,7 @@ public class MesNews {
 			int x = sc.nextInt();
 			System.out.println("\nlargeur :");
 			int y = sc.nextInt();
-			Vec2d vec2Resolution = new Vec2d(x,y);
+            Vector2 vec2Resolution = new Vector2(x,y);
 			System.out.println("Vous avez saisi : " + x +"*"+y);
 
 			System.out.println("Veulliez indiquer si la photo est en couleur (0 = faux et 1 = vrai)");

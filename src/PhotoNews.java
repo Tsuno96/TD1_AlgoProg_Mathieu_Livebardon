@@ -1,6 +1,3 @@
-
-import com.sun.javafx.geom.Vec2d;
-
 import java.net.URL;
 import java.time.LocalDate;
 
@@ -8,11 +5,11 @@ public class PhotoNews extends News {
 
    private String strPhoto;
    private String strFormat;
-   private Vec2d vec2Resolution;
+   private Vector2 vec2Resolution;
    private boolean bColored;
 
     public PhotoNews(String strTitre, LocalDate ldDate, String strAuteur, URL urlSource,
-                     String strPhoto, String strFormat, Vec2d vec2Resolution, boolean bColored) {
+                     String strPhoto, String strFormat, Vector2 vec2Resolution, boolean bColored) {
         super(strTitre, ldDate, strAuteur, urlSource);
         this.strPhoto = strPhoto;
         this.strFormat = strFormat;
@@ -42,11 +39,11 @@ public class PhotoNews extends News {
         this.strFormat = strFormat;
     }
 
-    public Vec2d getVec2Resolution() {
+    public Vector2 getVec2Resolution() {
         return vec2Resolution;
     }
 
-    public void setVec2Resolution(Vec2d vec2Resolution) {
+    public void setVec2Resolution(Vector2 vec2Resolution) {
         this.vec2Resolution = vec2Resolution;
     }
 

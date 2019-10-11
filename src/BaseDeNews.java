@@ -25,7 +25,7 @@ public class BaseDeNews {
     public void afficher_collection(){
         for (News n: tsCollection
              ) {
-            System.out.println(n);
+            System.out.println("\n"+n);
         }
     }
 

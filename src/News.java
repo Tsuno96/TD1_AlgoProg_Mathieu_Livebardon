@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
-public abstract class News {
+public  class News {
 
 	private String strTitre;
 	private LocalDate ldDate;
