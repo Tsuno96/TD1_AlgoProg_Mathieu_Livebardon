@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -37,6 +38,9 @@ public class MesNews {
                 case 8:
                     quitter();
                     break;
+                case 9:
+                    lireBD();
+                    break;
                 default:
                     System.out.println("Vous n'avez pas choisi un nombre faisant parti du menu");
                     break;
@@ -45,9 +49,19 @@ public class MesNews {
 
     }
 
+    private static void lireBD() {
+        try {
+            String fileName = new String("file.dat");
+            bdn.lire(fileName);
+        } catch (ClassNotFoundException | IOException e) {
+            System.out.println("Erreur d'entree-sortie");
+        }
+    }
+
     public static int afficher_menu() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir un nombre : \n 1 - Creer\n 2 - Ouvrir\n 3 - Sauvegarder\n 4 - Inserer\n 5 - Supprimer \n 6 - Afficher\n 7 - Rechercher\n 8 - Quitter");
+        System.out.println("Veuillez saisir un nombre : \n 1 - Creer\n 2 - Ouvrir\n 3 - Sauvegarder\n 4 - Inserer" +
+                "\n 5 - Supprimer \n 6 - Afficher\n 7 - Rechercher\n 8 - Quitter\n 9 - Lire BD");
         int choix = sc.nextInt();
         System.out.println("Vous avez saisi : " + choix);
         return choix;
@@ -62,13 +76,13 @@ public class MesNews {
         System.out.println("Recherche dans la base");
         creer();
         bdn.ajoute(new PressArticle("un", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
-				"Le lama est le meilleur des animaux",new URL("http://y.fr"),false));
+                "Le lama est le meilleur des animaux", new URL("http://y.fr"), false));
         bdn.ajoute(new PressArticle("deux", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
-				"Pourquoi mon roi est un lama ?",new URL("http://lama.fr"),true));
+                "Pourquoi mon roi est un lama ?", new URL("http://lama.fr"), true));
         bdn.ajoute(new PhotoNews("trois", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
-		,"lama.jpg","JPG",new Vector2(200,500),true));
+                , "lama.jpg", "JPG", new Vector2(200, 500), true));
         bdn.ajoute(new PhotoNews("quatre", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
-				,"lama.png","PNG",new Vector2(250,5000),false));
+                , "lama.png", "PNG", new Vector2(250, 5000), false));
 
     }
 
@@ -91,7 +105,7 @@ public class MesNews {
         int nNewstodelete = sc.nextInt();
         i = 1;
 
-        News n_toremove = new News();
+        News n_toremove = null;
         for (News n : bdn.getTsCollection()
         ) {
 
@@ -145,8 +159,8 @@ public class MesNews {
             System.out.println("Vous avez saisi : " + urlVersionLongue);
 
             System.out.println("Veulliez indiquer si l'article existe ne format papier (0 = faux et 1 = vrai)");
-			int b;
-			boolean bVersionPapier = false;
+            int b;
+            boolean bVersionPapier = false;
             do {
                 b = sc.nextInt();
                 switch (b) {
@@ -159,56 +173,62 @@ public class MesNews {
                     default:
                         System.out.println("Le choix n'est pas valide veuillez recommencer (0 = faux et 1 = vrai)");
                 }
-            }while (b != 0 || b !=1);
+            } while (b != 0 || b != 1);
 
             System.out.println("Vous avez saisi : " + b);
 
-            News n = new PressArticle(strTitre, ldDate, strAuteur, urlSource, strText,urlVersionLongue,bVersionPapier);
+            News n = new PressArticle(strTitre, ldDate, strAuteur, urlSource, strText, urlVersionLongue, bVersionPapier);
+
             bdn.ajoute(n);
 
         } else {
-			System.out.println("Veulliez saisir l'arborescence ou ce trouve votre photo");
-			String strPhoto = sc.nextLine();
-			System.out.println("Vous avez saisi : " + strPhoto);
+            System.out.println("Veulliez saisir l'arborescence ou ce trouve votre photo");
+            String strPhoto = sc.nextLine();
+            System.out.println("Vous avez saisi : " + strPhoto);
 
-			System.out.println("Veulliez saisir le format de votre photo");
-			String strFormat = sc.nextLine();
-			System.out.println("Vous avez saisi : " + strFormat);
+            System.out.println("Veulliez saisir le format de votre photo");
+            String strFormat = sc.nextLine();
+            System.out.println("Vous avez saisi : " + strFormat);
 
-			System.out.println("Veulliez saisir la resolution de votre image\nlongueur :");
-			int x = sc.nextInt();
-			System.out.println("\nlargeur :");
-			int y = sc.nextInt();
-            Vector2 vec2Resolution = new Vector2(x,y);
-			System.out.println("Vous avez saisi : " + x +"*"+y);
+            System.out.println("Veulliez saisir la resolution de votre image\nlongueur :");
+            int x = sc.nextInt();
+            System.out.println("\nlargeur :");
+            int y = sc.nextInt();
+            Vector2 vec2Resolution = new Vector2(x, y);
+            System.out.println("Vous avez saisi : " + x + "*" + y);
 
-			System.out.println("Veulliez indiquer si la photo est en couleur (0 = faux et 1 = vrai)");
-			int b;
-			boolean bColored = false;
-			do {
-				b = sc.nextInt();
-				switch (b) {
-					case 0:
-						bColored = false;
-						break;
-					case 1:
-						bColored = true;
-						break;
-					default:
-						System.out.println("Le choix n'est pas valide veuillez recommencer (0 = faux et 1 = vrai)");
-				}
-			}while (b != 0 || b !=1);
+            System.out.println("Veulliez indiquer si la photo est en couleur (0 = faux et 1 = vrai)");
+            int b;
+            boolean bColored = false;
+            do {
+                b = sc.nextInt();
+                switch (b) {
+                    case 0:
+                        bColored = false;
+                        break;
+                    case 1:
+                        bColored = true;
+                        break;
+                    default:
+                        System.out.println("Le choix n'est pas valide veuillez recommencer (0 = faux et 1 = vrai)");
+                }
+            } while (b != 0 || b != 1);
 
-			System.out.println("Vous avez saisi : " + bColored);
+            System.out.println("Vous avez saisi : " + bColored);
 
-			News n = new PhotoNews(strTitre, ldDate, strAuteur, urlSource, strPhoto,strFormat,vec2Resolution,bColored);
-			bdn.ajoute(n);
+            News n = new PhotoNews(strTitre, ldDate, strAuteur, urlSource, strPhoto, strFormat, vec2Resolution, bColored);
+            bdn.ajoute(n);
         }
 
     }
 
     public static void sauvegarder() {
-        System.out.println("Sauvergarde de la base d'actualité");
+        System.out.println("Sauvegarde de la base d'actualité");
+        try {
+            bdn.sauvegarder("file.dat");
+        } catch (IOException e) {
+            System.out.println("Erreur d'entree-sortie");
+        }
 
     }
 

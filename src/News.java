@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -5,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
-public  class News {
+public abstract class News implements Serializable {
 
 	private String strTitre;
 	private LocalDate ldDate;

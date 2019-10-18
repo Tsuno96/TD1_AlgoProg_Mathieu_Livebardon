@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.net.URL;
 import java.time.LocalDate;
 

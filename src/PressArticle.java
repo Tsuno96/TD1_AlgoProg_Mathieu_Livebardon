@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 
-public class PressArticle extends News {
+public class PressArticle extends News  {
 
     private String strText;
     private URL urlVersionLongue;
