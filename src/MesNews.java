@@ -43,6 +43,15 @@ public class MesNews {
                     break;
                 default:
                     System.out.println("Vous n'avez pas choisi un nombre faisant parti du menu");
+                    creer();
+                    bdn.ajoute(new PressArticle("un", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
+                            "Le lama est le meilleur des animaux", new URL("http://y.fr"), false));
+                    bdn.ajoute(new PressArticle("deux", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
+                            "Pourquoi mon roi est un lama ?", new URL("http://lama.fr"), true));
+                    bdn.ajoute(new PhotoNews("trois", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
+                            , "lama.jpg", "JPG", new Vector2(200, 500), true));
+                    bdn.ajoute(new PhotoNews("quatre", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
+                            , "lama.png", "PNG", new Vector2(250, 5000), false));
                     break;
             }
         } while (i != 8);
@@ -72,17 +81,32 @@ public class MesNews {
 
     }
 
-    public static void rechercher() throws MalformedURLException {
-        System.out.println("Recherche dans la base");
-        creer();
-        bdn.ajoute(new PressArticle("un", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
-                "Le lama est le meilleur des animaux", new URL("http://y.fr"), false));
-        bdn.ajoute(new PressArticle("deux", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr"),
-                "Pourquoi mon roi est un lama ?", new URL("http://lama.fr"), true));
-        bdn.ajoute(new PhotoNews("trois", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
-                , "lama.jpg", "JPG", new Vector2(200, 500), true));
-        bdn.ajoute(new PhotoNews("quatre", LocalDate.parse("2005-05-05"), "1m80", new URL("http://g.fr")
-                , "lama.png", "PNG", new Vector2(250, 5000), false));
+    public static void rechercher()  {
+        System.out.println("Recherche dans la base (titre, date yyyy-mm-dd, auteur) :");
+        Scanner sc = new Scanner(System.in);
+        String newsRecherche = sc.nextLine();
+        String [] words = newsRecherche.split(" ");
+        for (News n : bdn.getTsCollection())
+        {
+            boolean finded = true;
+            String test = n.toString();
+            for(String word : words)
+            {
+                if (!test.toLowerCase().contains(word.toLowerCase()))
+                {
+                    finded = false;
+                }
+            }
+            if (finded)
+            {
+                System.out.println(n+"\n");
+            }
+            else
+            {
+                System.out.println("Pas trouvé");
+
+            }
+        }
 
     }
 
