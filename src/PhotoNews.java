@@ -55,4 +55,8 @@ public class PhotoNews extends News {
     public void setbColored(boolean bColored) {
         this.bColored = bColored;
     }
+
+    public int compareTo(Object arg0) {
+       return super.compareTo(arg0);
+    }
 }

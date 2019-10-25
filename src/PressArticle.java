@@ -47,5 +47,8 @@ public class PressArticle extends News  {
         this.bVersionPapier = bVersionPapier;
     }
 
+    public int compareTo(Object arg0) {
+       return super.compareTo(arg0);
+    }
 
 }

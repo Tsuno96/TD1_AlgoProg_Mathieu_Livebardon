@@ -12,12 +12,7 @@ public class BaseDeNews {
     }
     public void initialise()
     {
-        tsCollection = new TreeSet<News>(new Comparator<News>() {
-            @Override
-            public int compare(News n1, News n2) {
-                return n1.getStrTitre().compareTo(n2.getStrTitre());
-            }
-        });
+        tsCollection = new TreeSet<News>();
     }
 
     public void ajoute(News n)

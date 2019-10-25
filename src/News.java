@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
-public abstract class News implements Serializable {
+public abstract class News implements Comparable, Serializable {
 
 	private String strTitre;
 	private LocalDate ldDate;
@@ -89,6 +89,16 @@ public abstract class News implements Serializable {
 
 	public void setUrlSource(URL urlSource) {
 		this.urlSource = urlSource;
+	}
+
+
+	public int compareTo(Object arg0) {
+		// On transtype arg0 (de type Object) :
+		News n = (News)arg0;
+
+		if (getStrTitre().compareTo(n.getStrTitre())<0) return -1;
+		else if (getStrTitre().compareTo(n.getStrTitre())>0) return 1;
+		else return 0;
 	}
 
 }
