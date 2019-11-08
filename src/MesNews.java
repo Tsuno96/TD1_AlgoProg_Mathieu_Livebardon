@@ -72,6 +72,7 @@ public class MesNews {
         System.out.println("Veuillez saisir un nombre : \n 1 - Creer\n 2 - Ouvrir\n 3 - Sauvegarder\n 4 - Inserer" +
                 "\n 5 - Supprimer \n 6 - Afficher\n 7 - Rechercher\n 8 - Quitter\n 9 - Lire BD");
         int choix = sc.nextInt();
+        sc = new Scanner(System.in);
         System.out.println("Vous avez saisi : " + choix);
         return choix;
     }
@@ -86,27 +87,30 @@ public class MesNews {
         Scanner sc = new Scanner(System.in);
         String newsRecherche = sc.nextLine();
         String [] words = newsRecherche.split(" ");
+        boolean  result = false;
         for (News n : bdn.getTsCollection())
         {
-            boolean finded = true;
+            boolean finded = false;
             String test = n.toString();
             for(String word : words)
             {
-                if (!test.toLowerCase().contains(word.toLowerCase()))
+                if (test.toLowerCase().contains(word.toLowerCase()))
                 {
-                    finded = false;
+                    finded = true;
                 }
             }
             if (finded)
             {
+                result = true;
                 System.out.println(n+"\n");
             }
-            else
-            {
-                System.out.println("Pas trouvé");
-
-            }
         }
+        if(!result){
+            System.out.println("Pas trouvé");
+        }
+
+
+
 
     }
 
@@ -127,6 +131,7 @@ public class MesNews {
         Scanner sc = new Scanner(System.in);
         System.out.println("Veulliez saisir le numero de la news à supprimer");
         int nNewstodelete = sc.nextInt();
+        sc = new Scanner(System.in);
         i = 1;
 
         News n_toremove = null;
@@ -152,7 +157,9 @@ public class MesNews {
         do {
             System.out.println("De quel type est votre arcticle\n0 - Aricle de presse\n1 - Photo");
             choix = sc.nextInt();
-        } while (choix != 0 || choix != 1);
+            sc = new Scanner(System.in);
+        } while (choix != 0 && choix != 1);
+
         System.out.println("Vous avez saisi : " + choix);
 
         System.out.println("Veulliez saisir le titre de la news");
@@ -187,6 +194,7 @@ public class MesNews {
             boolean bVersionPapier = false;
             do {
                 b = sc.nextInt();
+                sc = new Scanner(System.in);
                 switch (b) {
                     case 0:
                         bVersionPapier = false;
@@ -197,7 +205,7 @@ public class MesNews {
                     default:
                         System.out.println("Le choix n'est pas valide veuillez recommencer (0 = faux et 1 = vrai)");
                 }
-            } while (b != 0 || b != 1);
+            } while (b != 0 && b != 1);
 
             System.out.println("Vous avez saisi : " + b);
 
@@ -216,8 +224,10 @@ public class MesNews {
 
             System.out.println("Veulliez saisir la resolution de votre image\nlongueur :");
             int x = sc.nextInt();
+            sc = new Scanner(System.in);
             System.out.println("\nlargeur :");
             int y = sc.nextInt();
+            sc = new Scanner(System.in);
             Vector2 vec2Resolution = new Vector2(x, y);
             System.out.println("Vous avez saisi : " + x + "*" + y);
 
@@ -226,6 +236,7 @@ public class MesNews {
             boolean bColored = false;
             do {
                 b = sc.nextInt();
+                sc = new Scanner(System.in);
                 switch (b) {
                     case 0:
                         bColored = false;
@@ -236,7 +247,7 @@ public class MesNews {
                     default:
                         System.out.println("Le choix n'est pas valide veuillez recommencer (0 = faux et 1 = vrai)");
                 }
-            } while (b != 0 || b != 1);
+            } while (b != 0 && b != 1);
 
             System.out.println("Vous avez saisi : " + bColored);
 
