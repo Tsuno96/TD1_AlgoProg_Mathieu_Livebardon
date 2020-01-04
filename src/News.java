@@ -8,21 +8,21 @@ import java.util.Scanner;
 
 public abstract class News implements Comparable, Serializable {
 
-	private String strTitre;
-	private LocalDate ldDate;
-	private String strAuteur;
-	private URL urlSource;
+        private String strTitre;
+        private LocalDate ldDate;
+        private String strAuteur;
+        private URL urlSource;
 
 	public News() throws MalformedURLException {
-		this.strTitre = "";
-		this.ldDate = LocalDate.now();
-		this.strAuteur = "";
-		this.urlSource = new URL("http://fake.url");
-	}
+            this.strTitre = "";
+            this.ldDate = LocalDate.now();
+            this.strAuteur = "";
+            this.urlSource = new URL("http://fake.url");
+        }
 
 	public News(String strTitre, LocalDate ldDate, String strAuteur, URL urlSource) {
-		this.strTitre = strTitre;
-		this.ldDate = ldDate;
+            this.strTitre = strTitre;
+            this.ldDate = ldDate;
 		this.strAuteur = strAuteur;
 		this.urlSource = urlSource;
 	}

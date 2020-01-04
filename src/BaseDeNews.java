@@ -6,10 +6,6 @@ public class BaseDeNews {
 
     TreeSet<News> tsCollection;
 
-    public TreeSet<News> getTsCollection() {
-        return tsCollection;
-    }
-
     public void initialise() {
         tsCollection = new TreeSet<News>();
     }
@@ -17,6 +13,10 @@ public class BaseDeNews {
     public void ajoute(News n) {
 
         tsCollection.add(n);
+    }
+
+    public TreeSet<News> getTsCollection() {
+        return tsCollection;
     }
 
     public void afficher_collection() {
